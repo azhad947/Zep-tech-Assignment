@@ -42,16 +42,19 @@ export default function Collections() {
 
       <div className="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
         {shown.map((t) => (
-          <article key={t.id}>
+          <article key={t.id} className="group">
+            {/* overflow-hidden clips the zoomed image inside the square */}
             <div className="aspect-square overflow-hidden rounded-sm bg-grout">
-              <TileArt
-                variant={t.variant}
-                a={t.a}
-                b={t.b}
-                c={t.c}
-                size={t.variant === "marble" || t.variant === "wood" ? 190 : 120}
-                label={`${t.name} tile pattern`}
-              />
+              <div className="size-full transform-gpu transition-transform duration-500 ease-out group-hover:scale-110">
+                <TileArt
+                  variant={t.variant}
+                  a={t.a}
+                  b={t.b}
+                  c={t.c}
+                  size={t.variant === "marble" || t.variant === "wood" ? 190 : 120}
+                  label={`${t.name} tile pattern`}
+                />
+              </div>
             </div>
             <h3 className="mt-4 font-display text-xl font-bold">{t.name}</h3>
             <p className="mt-1 text-sm text-ink/70">Size: {t.size}</p>
